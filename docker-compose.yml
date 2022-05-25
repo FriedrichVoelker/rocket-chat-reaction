@@ -1,0 +1,8 @@
+version: "1.0"
+services:
+  bot:
+    build: .
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+

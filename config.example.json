@@ -1,0 +1,10 @@
+{
+	"url": "https://chat.rocket.chat",
+	"username": "",
+	"password": "",
+	"roomId": "GENERAL",
+	"searchText": "Duck",
+	"count": 10,
+	"emoji": "duck",
+	"interval": 30000
+}
