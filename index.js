@@ -24,8 +24,13 @@ async function login() {
 
 async function main(){
 	let res = await http("GET", `chat.search?roomId=${config.roomId || "GENERAL"}&searchText=${config.searchText || "Duck"}&count=${config.count || "10"}`, ``);
-	console.log("Messages:", res)
+	// console.log("Messages:", res)
 	res.messages.forEach(async element => {
+		if(element.reactions != null &&  element.reactions[`:${config.emoji}:`] != null &&  element.reactions[`:${config.emoji}:`].usernames != null && element.reactions[`:${config.emoji}:`].usernames.includes(config.username)){
+			return;
+		}
+
+
 		res = await http("POST", "chat.react", `{ "messageId" : "${element._id}" , "emoji" : "${config.emoji || "duck"}", "shouldReact" : true }`);
 	});
 }
@@ -53,7 +58,6 @@ async function http(method,endpoint, reqData) {
 		  }else{
 			returnval = xhr.responseText
 		  }
-		  console.log(returnval)
 		  return resolve(JSON.parse(returnval));
 		}
 	  };
